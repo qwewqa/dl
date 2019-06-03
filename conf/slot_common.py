@@ -13,7 +13,7 @@ def set(slots):
     if ele == 'flame':
         slots.d = slot.d.flame.Cerberus()
     elif ele == 'water':
-        slots.d = slot.d.water.DJ()
+        slots.d = slot.d.water.Leviathan()
     elif ele == 'wind':
         slots.d = slot.d.wind.Zephyr()
     elif ele == 'light':
@@ -30,14 +30,14 @@ def set(slots):
         slots.a = RR()+CE()
     if wt == 'dagger':
         slots.a = RR()+FG()
-    if wt == 'axe': 
+    if wt == 'axe':
         #slots.a = RR()+KFM()
         slots.a = KFM()+Flower_in_the_Fray()
-    if wt == 'lance': 
+    if wt == 'lance':
         slots.a = RR()+CE()
         #slots.a = LC()+Dragon_and_Tamer()
-    if wt == 'wand': 
-        slots.a = RR()+FG()
+    if wt == 'wand':
+        slots.a = RR()+CE()
     if wt == 'bow':
         slots.a = RR()+FG()
 
@@ -47,5 +47,3 @@ def set(slots):
     slots.w = weapon()
 
     return
-
-
