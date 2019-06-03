@@ -11,6 +11,7 @@ def c(ele,wt):
     elif ele == 'shadow':
         r += (0.15+0.07)
 
+    r = 0.15
     if wt :
         r += 0.23
 
@@ -18,4 +19,3 @@ def c(ele,wt):
 
 def d(ele):
     return 1
-
