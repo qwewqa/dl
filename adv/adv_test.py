@@ -75,6 +75,8 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     comment = adv.comment
 
     adv.run(sim_duration)
+    amulets = '['+adv.slots.a.__class__.__name__ + '+' + adv.slots.a.a2.__class__.__name__+']'
+    #comment = amulets + comment
 
     if not no_cond:
         condition = adv.m_condition.p()
@@ -84,7 +86,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         g_condition = condition
 
     displayed_str = adv.displayed_att
-
+    
 
     if loglevel > 0 and loglevel & 1:
         logcat()
@@ -123,8 +125,8 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
         else:
             print('\n=======================')
             #print mname,"%d"%float_dps
-            print("%s , %s (str: %d) %s ;%s"%( recount, mname,
-                    displayed_str, '<%s>'%condition, comment ))
+            print("%s , %s (str: %d) %s ;%s ;%s"%( recount, mname,
+                    displayed_str, amulets, '<%s>'%condition, comment ))
             print('-----------------------')
 
         dmg_sum = {}
@@ -151,7 +153,7 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
     elif loglevel == -1:
         if condition != '':
             condition = '<%s>'%(condition)
-        print("%s , %s (str: %d) %s ;%s"%( recount, mname, displayed_str, condition, comment ))
+        print("%s , %s (str: %d) %s ;%s ;%s"%( recount, mname, displayed_str,amulets, condition, comment ))
     elif loglevel == -2:
         #comment += " (str: %d)"%(displayed_str)
         bdps = team_dps*bps
@@ -167,11 +169,11 @@ def test(classname, conf, verbose=0, mass=0, duration=None, no_cond=None):
             if g_condition:
                 name = '_c_'+mname
                 condi = '!<%s>'%g_condition
+        
 
-
-        line = "%s,%s,%s,%s,%s,%s,%s"%(
+        line = "%s,%s,%s,%s,%s,%s,%s,%s"%(
                 name,adv.conf['c.stars']+'*', adv.conf['c.ele'], adv.conf['c.wt'],
-                displayed_str, condi,comment,
+                displayed_str, amulets ,condi,comment,
                 )
         line = line.replace(',3*,',',3星,').replace(',4*,',',4星,').replace(',5*,',',5星,')
         line = line.replace('sword','剑').replace('blade','刀').replace('axe','斧').replace('dagger','匕')
@@ -210,7 +212,7 @@ def do_mass_sim(classname, conf, no_cond=None):
     results = []
     adv = classname(conf=conf)
     _acl, _acl_str = acl_func_str(
-                    adv.acl_prepare_default+adv.conf['acl']
+                    adv.acl_prepare_default+adv.conf['acl'] 
                     )
     for i in range(sim_times):
         if not no_cond:
@@ -227,9 +229,9 @@ def do_mass_sim(classname, conf, no_cond=None):
 
 def sum_mass_dmg(rs):
     dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0, 'total':0 }
-    sdmg_sum = {'s1':{"dmg":0, "count": 0},
-                's2':{"dmg":0, "count": 0},
-                's3':{"dmg":0, "count": 0},
+    sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
+                's2':{"dmg":0, "count": 0}, 
+                's3':{"dmg":0, "count": 0}, 
                 }
     x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0}
     o_sum = {}
@@ -250,7 +252,7 @@ def sum_mass_dmg(rs):
             o_sum[j] += i['o_sum'][j] / sim_times
         team_buff += i['buff_sum'] / sim_times
         team_energy += i['energy_sum']  / sim_times
-
+        
         #case = 0
         #case += i['dmg_sum']['total'] / sim_duration
         #case += i['buff_sum'] * team_dps
@@ -258,12 +260,12 @@ def sum_mass_dmg(rs):
         #print case
 
     r = {}
-    r['dmg_sum'] = dmg_sum
-    r['sdmg_sum'] = sdmg_sum
-    r['x_sum'] = x_sum
-    r['o_sum'] = o_sum
-    r['buff_sum'] = team_buff
-    r['energy_sum'] = team_energy
+    r['dmg_sum'] = dmg_sum 
+    r['sdmg_sum'] = sdmg_sum 
+    r['x_sum'] = x_sum 
+    r['o_sum'] = o_sum 
+    r['buff_sum'] = team_buff  
+    r['energy_sum'] = team_energy 
     return r
 
 
@@ -289,7 +291,7 @@ def statis(data, mname):
             bmin = i[1]
         if i[1] > bmax:
             bmax = i[1]
-
+    
     global dps
     global bps
     global energy
@@ -376,9 +378,9 @@ def sum_ac():
 def sum_dmg():
     l = logget()
     dmg_sum = {'x': 0, 's': 0, 'fs': 0, 'others':0 }
-    sdmg_sum = {'s1':{"dmg":0, "count": 0},
-                's2':{"dmg":0, "count": 0},
-                's3':{"dmg":0, "count": 0},
+    sdmg_sum = {'s1':{"dmg":0, "count": 0}, 
+                's2':{"dmg":0, "count": 0}, 
+                's3':{"dmg":0, "count": 0}, 
                 }
     x_sum = {"x1":0, "x2":0, "x3":0, "x4":0, "x5":0, "fs":0}
     team_buff_powertime = 0
@@ -465,3 +467,8 @@ class Result(object):
     odmg_sum = {}
     bdmg_sum = 0
     energy_sum = 0
+
+
+
+
+

@@ -39,7 +39,7 @@ def set(slots):
     if wt == 'wand':
         slots.a = RR()+CE()
     if wt == 'bow':
-        slots.a = RR()+FG()
+        slots.a = RR()+FoG()
 
     typeweapon = getattr(slot.w, wt)
     weapon = getattr(typeweapon, ele)
@@ -47,3 +47,5 @@ def set(slots):
     slots.w = weapon()
 
     return
+
+
