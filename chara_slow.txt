@@ -4,7 +4,6 @@ s_luca.py
 addis.py
 ieyasu.py
 sinoa.py
-ezelith.py
 sazanka.py
 natalie.py
 patia.py

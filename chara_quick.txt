@@ -29,6 +29,7 @@ elisanne.py
 emma.py
 erik.py
 euden.py
+ezelith.py
 fjorm.py
 fleur.py
 francesca.py
