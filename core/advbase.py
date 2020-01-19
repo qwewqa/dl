@@ -1495,7 +1495,7 @@ class Adv(object):
             elif wide == 'self':
                 buff = Selfbuff(e.name, *buffarg).on()
             elif wide == 'debuff':
-                buff = Debuff(e.name, *buffarg).on()
+                buff = Debuff(e.name, *buffarg[:-1], chance=float(buffarg[-1])).on()
             else:
                 buff = Buff(e.name, *buffarg).on()
             if e.name == 's3' and buff.toggle:
