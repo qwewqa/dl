@@ -1,4 +1,4 @@
-APP_URL = 'https://wildshinobu.pythonanywhere.com/';
+APP_URL = 'https://qwewqa.pythonanywhere.com/';
 EX_MAP = {
     'blade': 'k',
     'wand': 'r',

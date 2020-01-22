@@ -22,7 +22,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Helpers
-ADV_DIR = '/home/wildshinobu/dl/adv/'
+ADV_DIR = '/home/qwewqa/dl/adv/'
 MEANS_ADV = {
     'addis': 'addis.py.means',
     'sazanka': 'sazanka.py.means',
